@@ -1,0 +1,459 @@
+/* ==========================================
+   1. EXTERNAL FONTS IMPORT
+   ========================================== */
+@import url('https://googleapis.com');
+
+/* ==========================================
+   2. CSS CUSTOM VARIABLES (THEMING)
+   ========================================== */
+:root {
+    --font-heading: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-body: 'Merriweather', Georgia, serif;
+
+    /* Global Light Mode Palette */
+    --bg-primary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-main: #212529;
+    --text-muted: #495057;
+    --accent-color: #0076d6; 
+    --accent-hover: #00569e;
+    --border-color: #dee2e6;
+    --header-right-bg: #e9ecef; 
+
+    /* Reformatted Left Side Header Configurations */
+    --header-left-bg: #00569e;     /* Deep tech-blue background */
+    --header-text-main: #ffffff;   /* Pure white text */
+    --header-text-muted: #e2e8f0;  /* Crisp light silver text */
+    --header-btn-border: #ffffff;  /* White button border */
+}
+
+/* This selector must accurately match what your JS injects onto the <html> tag */
+[data-theme="dark"] {
+    /* Global Dark Mode Palette overrides */
+    --bg-primary: #121212;
+    --bg-card: #1e1e1e;
+    --text-main: #f8f9fa;
+    --text-muted: #cbd5e1;
+    --accent-color: #3b9eff;
+    --accent-hover: #70baff;
+    --border-color: #2d3748;
+    --header-right-bg: #121212; 
+
+    /* Reformatted Left Side Header Overrides for Dark Mode */
+    --header-left-bg: #1a1a1a;     /* Deep technical slate-black */
+    --header-text-main: #f8f9fa;   /* Clear high-contrast white text */
+    --header-text-muted: #cbd5e1;  /* Soft gray descriptive paragraph text */
+    --header-btn-border: #2d3748;  /* Muted charcoal button border */
+}
+
+/* ==========================================
+   3. BASE & TYPOGRAPHY STYLES
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+}
+
+p {
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+/* ==========================================
+   4. CONTENT LAYOUT MODULES & COMPONENTS
+   ========================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 5%;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* ==========================================
+   5. REFORMATTED BLUE SPLIT HEADER LAYOUT
+   ========================================== */
+.split-header {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--header-left-bg);
+    transition: background-color 0.3s ease;
+}
+
+.header-left {
+    position: relative;
+    padding: 7rem 5% 5rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+    text-align: left;        
+    min-height: 550px; 
+}
+
+/* Hidden by default on narrow mobile screen viewports */
+.header-right {
+    display: none; 
+}
+
+.header-center-content {
+    max-width: 540px;
+    width: 100%;
+    position: relative;
+    z-index: 3; 
+}
+
+/* Upgraded High-Definition Typography Layout */
+.header-center-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: var(--header-text-main); /* Dynamically transitions layout colors */
+}
+
+.header-center-content p {
+    color: var(--header-text-muted); /* Fluid contrast fallback */
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   HEADER ACTION INTERACTIVE ELEMENTS
+   ========================================== */
+/* Upgraded Contrast Theme Toggle Switch */
+.header-left .toggle-btn {
+    position: absolute;
+    top: 1rem;
+    left: 5%; 
+    background: rgba(255, 255, 255, 0.1); /* Soft glassmorphism backdrop glow */
+    border: 2px solid var(--header-btn-border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: var(--header-text-main);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.header-left .toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* High-Contrast Primary Call to Action Button */
+.start-btn {
+    display: inline-block;
+    background-color: #ffffff; /* Swapped out blue fill for crisp white overlay pop */
+    color: #00569e;            /* Embeds matching blue typography directly inside */
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    padding: 0.8rem 2.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.start-btn:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent-hover);
+}
+
+/* ==========================================
+   6. CENTERED SECTIONS & LISTS (TOP ALIGNED)
+   ========================================== */
+.centered-viewport-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    max-width: 600px;       
+    margin: 4rem auto 0 auto; 
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.text-block-section {
+    text-align: left;       
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.list-section {
+    width: 100%;            
+}
+
+.course-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.course-list li {
+    display: flex;
+    align-items: flex-start; /* 🌟 Swapped from center to flex-start for multiline support */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading); 
+    color: var(--text-main);
+    transition: background-color 0.2s ease;
+}
+
+.course-list li:hover {
+    background-color: var(--header-right-bg);
+}
+
+/* ==========================================
+   SCALED-UP INTERACTIVE PROGRESS SYSTEM
+   ========================================== */
+.progress-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;          
+    height: 1.65rem;         
+    margin-left: auto;       
+    position: relative;
+    cursor: help;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    flex-shrink: 0;          
+    
+    /* 🌟 Fixed Micro-Alignment for Multi-line Texts */
+    margin-top: 0.2rem; /* Offsets and anchors circle directly with line 1 of text */
+}
+
+/* ==========================================
+   SHARED PSEUDO-ELEMENT ICON FIXES
+   ========================================== */
+.course-list li::before {
+    /* 🌟 Adds structural top padding continuity to matching left side graphics */
+    margin-top: 0.2rem; 
+}
+
+/* ==========================================
+   7. GRAPHICAL SYSTEM & INTERACTIVE PROGRESS
+   ========================================== */
+
+/* Universal structural anchor for the left-side icon box */
+.course-list li::before {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 1rem;
+    content: "";
+    user-select: none;
+    flex-shrink: 0;
+    transform: translateY(1px);
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA2NmNjIiBzdHJva2std2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PGxpbmUgeDE9IjQiIHkxPSI2IiB4Mj0iMTYiIHkyPSI2Ii8+PGxpbmUgeDE9IjQiIHkxPSIxMiIgeDI9IjIwIiB5Mj0iMTIiLz48bGluZSB4MT0iNCIgeTE9IjE4IiB4Mj0iMTIiIHkyPSIxOCIvPjwvc3ZnPg==");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Exception Override: Last List Item Gets Thicker Boxed Question Mark */
+.course-list li:last-child::before {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA1NjlhIiBzdHJva2std2lkdGg9IjIuNzUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIgcnk9IjIiLz48cGF0aCBkPSJNOS4wOSA5YTMgMyAwIDAgMSA1LjgzIDFUMTIgMTN2MC41Ii8+PGxpbmUgeDE9IjEyIiB5MT0iMTcuNSIgeDI9IjEyLjAxIiB5Mj0iMTcuNSIvPjwvc3ZnPg==");
+}
+
+/* Base properties for the right-aligned interactive progress div boxes */
+.progress-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: auto;
+    position: relative;
+    cursor: help;
+    flex-shrink: 0;
+    transform: translateY(1px);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* ==========================================
+   INDIVIDUAL ROW PERCENTAGE ARCS (BASE64)
+   ========================================== */
+/* Row 1: 0% Complete (Clean, empty gray track ring) */
+.progress-container.p-0 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iI2UyZThmMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9zdmc+");
+}
+
+/* Row 2: 25% Vector Arc (Dashoffset = 66) */
+.progress-container.p-25 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iI2UyZThmMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iIzAwNjZjYyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSI4OCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjY2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHRyYW5zZm9ybT0icm90YXRlKC05MCAxOCAxOCkiLz48L3N2Zz4=");
+}
+
+/* Row 3: 50% Vector Arc (Dashoffset = 44) */
+.progress-container.p-50 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iI2UyZThmMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iIzAwNjZjYyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSI4OCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjQ0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHRyYW5zZm9ybT0icm90YXRlKC05MCAxOCAxOCkiLz48L3N2Zz4=");
+}
+
+/* Row 4: 75% Vector Arc (Dashoffset = 22) */
+.progress-container.p-75 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iI2UyZThmMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iIzAwNjZjYyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSI4OCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHRyYW5zZm9ybT0icm90YXRlKC05MCAxOCAxOCkiLz48L3N2Zz4=");
+}
+
+/* Row 5: 100% Complete (Solid accent blue badge with a sharp white checkmark) */
+.progress-container.p-100 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIHN0cm9rZT0iIzAwNzZkNiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTEzLjUgMThsMy41IDMuNSA2LTciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIxMjUyOSIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
+}
+
+/* Dynamic color adjustment for the filled badge when dark theme is enabled */
+[data-theme="dark"] .progress-container.p-100 {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTQiIGZpbGw9IiMzYjllZmYiLz48cGF0aCBkPSJNMTIgMThsNCA0IDgtOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTIxMjEyIiBzdHJva2std2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==");
+}
+
+/* ==========================================
+   FLOATING TOP BUBBLE TOOLTIP WITH ARROW
+   ========================================== */
+/* Main Floating Bubble Tooltip Text Container */
+.progress-container::after {
+    content: attr(data-percent); 
+    position: absolute;
+    bottom: calc(100% + 8px); /* Anchors exactly 8px above the top rim of the circle */
+    left: 50%;
+    transform: translateX(-50%) translateY(4px); /* Centers relative to circle width base */
+    background-color: var(--text-main);
+    color: var(--bg-card);
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+}
+
+/* Embedded Bottom Triangle Wedge Arrow Attachment */
+.progress-container::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 3px); /* Fits right between bubble container box and circle asset */
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-main); /* Draws a down-pointing CSS arrow */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 20;
+}
+
+/* ==========================================
+   HOVER STATE TRIGGERS
+   ========================================== */
+.progress-container:hover::after,
+.progress-container:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Lifts the bubble upwards on transition state trigger */
+}
+
+/* ==========================================
+   8. RESPONSIVE MEDIA BREAKPOINTS
+   ========================================== */
+/* Tablet Breakpoint (768px+) */
+@media (min-width: 768px) {
+    .grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .header-center-content h1 {
+        font-size: 2.6rem;
+    }
+}
+
+/* Desktop Breakpoint (992px+) */
+@media (min-width: 992px) {
+    .split-header {
+        display: flex;
+        flex-direction: row; 
+        height: 550px; 
+    }
+
+    .header-left, 
+    .header-right {
+        flex: 0 0 50%; 
+        height: 100%;
+    }
+
+    .header-left {
+        padding: 4rem 4rem 4rem 8%; /* Increased left indent padding for desktop alignment */
+    }
+
+    .header-left .toggle-btn {
+        left: 8%; /* Updates anchor alignment guide to match desktop margin grid marker */
+    }
+
+    .header-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: var(--header-right-bg); 
+        transition: background-color 0.3s ease;
+    }
+
+    .header-right img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
+
+    .header-center-content h1 {
+        font-size: 3rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
