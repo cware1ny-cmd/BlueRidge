@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module</title>
+    <link rel="stylesheet" href="./course-styles.css" />
+  </head>
+  <body class="preload">
+    <script>
+      try {
+        if (localStorage.getItem("sidebar_collapsed") === "true") {
+          document.body.classList.add("sidebar-collapsed");
+        }
+      } catch (_) {}
+    </script>
+    <div class="module-wrapper">
+      <aside class="sidebar">
+        <h2 id="sidebarHeaderTitle">Title</h2>
+        <div id="sidebarProgressContainer"></div>
+        <ul id="sidebarCourseList"></ul>
+      </aside>
+      <main class="main-content">
+        <button class="toggle-btn" id="sidebarToggle" data-tooltip="Hide Module List" aria-label="Toggle Navigation Sidebar" aria-expanded="true"></button>
+        <div id="moduleHeaderArea" class="main-header"></div>
+        <div id="moduleContentArea"></div>
+        <div class="main-continue">
+          <button id="continueBtn" class="continue-btn">Continue to next module</button>
+        </div>
+      </main>
+    </div>
+    <script src="./index-data.js"></script>
+    <script>
+      function loadScript(src) {
+        return new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = () => reject(new Error("Failed to load " + src));
+          document.head.appendChild(s);
+        });
+      }
+
+      loadScript(window.NavigationContext.currentDataFile)
+        .then(() => loadScript("./course-engine.js"))
+        .catch(err => {
+          document.getElementById("moduleContentArea").textContent =
+            "This module could not be loaded.";
+          console.error(err);
+        });
+    </script>
+  </body>
+</html>

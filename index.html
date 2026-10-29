@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course</title>
+    <link rel="stylesheet" href="./course-styles.css" />
+  </head>
+  <body class="preload">
+    <script>
+      try {
+        if (localStorage.getItem("sidebar_collapsed") === "true") {
+          document.body.classList.add("sidebar-collapsed");
+        }
+      } catch (_) {}
+    </script>
+    <header class="split-header">
+      <div class="split-left">
+        <h1 id="mainTitle">Title</h1>
+      </div>
+      <div class="split-right">
+        <img id="courseLogo" alt="Online Learning logo" />
+      </div>
+    </header>
+    <div class="dashboard-wrapper">
+      <div id="dashTextAnchor"></div>
+      <div class="dash-modules">
+        <div id="dashboardProgressContainer"></div>
+        <ul id="mainCourseList"></ul>
+      </div>
+    </div>
+    <script defer src="./index-data.js"></script>
+    <script defer src="./course-engine.js"></script>
+  </body>
+</html>
